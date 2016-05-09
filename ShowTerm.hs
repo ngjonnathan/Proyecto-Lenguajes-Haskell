@@ -37,6 +37,6 @@ showTerm (Not t) = "neg(" ++ showTerm t ++ ")"
 instance Show Term where show = showTerm
 
 showEq :: Equation -> String
-showEq (Eq t1 t2) = showTerm t1 ++ " === " ++ showTerm t2
+showEq (Equation t1 t2) = showTerm t1 ++ " === " ++ showTerm t2
 
 instance Show Equation where show = showEq
