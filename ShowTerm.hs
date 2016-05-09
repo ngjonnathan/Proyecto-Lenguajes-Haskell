@@ -1,4 +1,4 @@
-module ShowTerm(showTerm) where
+module ShowTerm where
 import Definitions
 
 showTerm :: Term -> String

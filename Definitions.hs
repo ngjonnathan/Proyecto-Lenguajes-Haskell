@@ -1,8 +1,8 @@
-module Definitions (Term(..), Equation(..), Sust(..), (\/), (/\), (==>), (<==>), (!<==>), (===), (=:), neg )where
+module Definitions where
 
 data Term = T | F | Var Char | Or Term Term | And Term Term | Imp Term Term | DoubleImp Term Term | DoubleNotImp Term Term | Not Term deriving (Eq)
 data Equation = Equation Term Term deriving (Eq)
-data Sust = Sust1 Term Term | Sust2 Term Sust Term | Sust3 Term Term Sust Term Term
+data Sust = Sust1 Term Term | Sust2 Term Term Term Term | Sust3 Term Term Term Term Term Term
 
 --Operators
 (\/) :: Term -> Term -> Term
