@@ -2,6 +2,8 @@ module Functions where
 import Definitions
 
 sust :: Sust -> Term -> Term
+sust _ T = T
+sust _ F = F
 sust (Sust1 (Var x) term) (Var z) = if (x == z) then term else Var z
 sust (Sust1 (Var x) term) (Or e1 e2) = Or (sust (Sust1 (Var x) term) e1) (sust (Sust1 (Var x) term) e2)
 sust (Sust1 (Var x) term) (And e1 e2) = And (sust (Sust1 (Var x) term) e1) (sust (Sust1 (Var x) term) e2)
@@ -12,6 +14,8 @@ sust (Sust1 (Var x) term) (Not e1) = Not (sust (Sust1 (Var x) term) e1)
 sust _ _ = error "Debe sustituir una variable por una expresion"
 
 sust2 :: (Term,Sust,Term) -> Term -> Term
+sust2 _ T = T
+sust2 _ F = F
 sust2 (t2, (Sust1 (Var x1) t1), Var x2) (Var z)
         |  x1 == z  = t1
         |  x2 == z  = t2
@@ -26,6 +30,8 @@ sust2 _ _ = error "Debe sustituir una variable por una expresion"
 
 
 sust3 :: (Term,Term,Sust,Term,Term) -> Term -> Term
+sust3 _ T = T
+sust3 _ F = F
 sust3 (t3, t2, (Sust1 (Var x1) t1), Var x2, Var x3) (Var z)
         |  x1 == z  = t1
         |  x2 == z  = t2
