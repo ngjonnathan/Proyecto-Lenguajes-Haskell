@@ -40,3 +40,9 @@ showEq :: Equation -> String
 showEq (Equation t1 t2) = showTerm t1 ++ " === " ++ showTerm t2
 
 instance Show Equation where show = showEq
+
+showSust :: Sust -> String
+showSust (Sust1 (Var i) t) = "[" ++ show i ++ ":=" ++ showTerm t ++ "]"
+showSust (Sust2 (Var i) (Var j) t1 t2) = "[" ++ show i ++ ", " ++ show j ++ ":=" ++ showTerm t1 ++ ", " ++ showTerm t2 ++ "]"
+
+instance Show Sust where show = showSust

@@ -28,4 +28,8 @@ b = Var 'b'
 c :: Term
 c = Var 'c'
 
+z :: Term
+z = Var 'z'
+
+
 -- Continuar please

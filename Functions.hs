@@ -21,3 +21,11 @@ sust su (DoubleImp e1 e2) = DoubleImp (sust su e1) (sust su e2)
 sust su (DoubleNotImp e1 e2) = DoubleNotImp (sust su e1) (sust su e2)
 sust su (Not e1) = Not (sust su e1)
 sust _ _ = error "Debe sustituir una variable por una expresion"
+
+instantiate :: Equation -> Sust -> Equation
+instantiate (Equation t1 t2) su = Equation (sust su t1) (sust su t2)
+
+leibniz :: Equation -> Term -> Term -> Equation
+leibniz (Equation e1 e2) termE (Var z) = Equation t1 t2
+                                         where t1 = sust (Sust1 (Var z) e1) termE
+                                               t2 = sust (Sust1 (Var z) e2) termE
