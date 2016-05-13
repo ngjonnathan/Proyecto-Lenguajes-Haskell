@@ -1,5 +1,6 @@
 module Functions where
 import Definitions
+import Theorems
 
 sust :: Sust -> Term -> Term
 sust _ T = T
@@ -29,3 +30,6 @@ leibniz :: Equation -> Term -> Term -> Equation
 leibniz (Equation e1 e2) termE (Var z) = Equation t1 t2
                                          where t1 = sust (Sust1 (Var z) e1) termE
                                                t2 = sust (Sust1 (Var z) e2) termE
+
+infer :: Float -> Equation -> Sust -> Term -> Term -> Equation
+infer n _ su z termE = leibniz (instantiate (prop n) su) termE z
