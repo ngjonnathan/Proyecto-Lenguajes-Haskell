@@ -31,5 +31,12 @@ leibniz (Equation e1 e2) termE (Var z) = Equation t1 t2
                                          where t1 = sust (Sust1 (Var z) e1) termE
                                                t2 = sust (Sust1 (Var z) e2) termE
 
-infer :: Float -> Equation -> Sust -> Term -> Term -> Equation
-infer n _ su z termE = leibniz (instantiate (prop n) su) termE z
+infer :: Float -> Sust -> Term -> Term -> Equation
+infer n sus z termE = leibniz (instantiate (prop n) sus) termE z
+
+step :: Term -> Float -> Sust -> Term -> Term -> Term
+step term n sus z termE = stepAux $ infer n sus z termE
+    where stepAux (Equation e1 e2)
+                    | e1 == term = e1
+                    | e2 == term = e2
+                    | otherwise = error "Error"
