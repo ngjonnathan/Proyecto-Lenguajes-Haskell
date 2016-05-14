@@ -4,7 +4,6 @@ data Term = T | F | Var Char | Or Term Term | And Term Term | Imp Term Term | Do
 data Equation = Equation Term Term deriving (Eq)
 data Sust = Sust1 Term Term | Sust2 Term Term Term Term | Sust3 Term Term Term Term Term Term
 
---Operators
 (\/) :: Term -> Term -> Term
 (\/) t1 t2 = Or t1 t2
 

@@ -37,6 +37,6 @@ infer n sus z termE = leibniz (instantiate (prop n) sus) termE z
 step :: Term -> Float -> Sust -> Term -> Term -> Term
 step term n sus z termE = stepAux $ infer n sus z termE
     where stepAux (Equation e1 e2)
-                    | e1 == term = e1
-                    | e2 == term = e2
-                    | otherwise = error "Error"
+                    | e1 == term = e2
+                    | e2 == term = e1
+                    | otherwise = error "regla de inferencia invalida"
