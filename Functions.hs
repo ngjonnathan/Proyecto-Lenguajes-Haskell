@@ -40,3 +40,26 @@ step term n sus z termE = stepAux $ infer n sus z termE
                     | e1 == term = e2
                     | e2 == term = e1
                     | otherwise = error "regla de inferencia invalida"
+
+with :: ()
+with = ()
+
+using :: ()
+using = ()
+
+lambda :: ()
+lambda = ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    

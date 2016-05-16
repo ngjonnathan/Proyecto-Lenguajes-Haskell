@@ -1,4 +1,4 @@
-module Main () where
+module Main where
 import Definitions 
 import Vars
 import ShowTerm
@@ -12,3 +12,30 @@ sust1 = Sust1 p (q<==>p\/r)
 
 sust2 :: Sust
 sust2 = Sust2 p q (r\/p) (q==>a)
+
+statement :: Term -> IO() 
+statement term = putStrLn $ showTerm term
+
+main = statement (Var 'a')
+
+--verify= let theorem = (true === ((p <==> p) <==> (q <==> q))) in
+--		proof theorem
+--		>>=
+--		statement 3.2
+--		>>=
+--		statement 3.1
+--		>>=
+--		statement 3.3
+--		>>=
+--		statement 3.3
+--		>>=
+--		statement 3.1
+--		>>=
+--		statement 3.1
+--		>>=
+--		statement 3.1
+--		>>=
+--		done theorem
+
+
+

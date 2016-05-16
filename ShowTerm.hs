@@ -31,8 +31,8 @@ showTerm (DoubleNotImp (Var i) t) = showTerm(Var i) ++ " !<==> (" ++ showTerm(t)
 showTerm (DoubleNotImp t (Var i)) = "(" ++ showTerm(t) ++ ")" ++ " !<==> " ++ showTerm(Var i)
 showTerm (DoubleNotImp t1 t2) = "(" ++ showTerm t1 ++ ") !<==> (" ++ showTerm t2 ++ ")"
 
-showTerm (Not (Var i)) = "neg" ++ showTerm(Var i)
-showTerm (Not t) = "neg(" ++ showTerm t ++ ")"
+showTerm (Not (Var i)) = "¬" ++ showTerm(Var i)
+showTerm (Not t) = "¬(" ++ showTerm t ++ ")"
 
 instance Show Term where show = showTerm
 
