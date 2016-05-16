@@ -13,8 +13,8 @@ sust1 = Sust1 p (q<==>p\/r)
 sust2 :: Sust
 sust2 = Sust2 p q (r\/p) (q==>a)
 
-statement :: Term -> IO() 
-statement term = putStrLn $ showTerm term
+statement :: Term -> IO Term 
+statement term = return term
 
 main = statement (a/\true) 
 
