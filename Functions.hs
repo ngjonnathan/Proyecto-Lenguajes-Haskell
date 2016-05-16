@@ -3,8 +3,7 @@ import Definitions
 import Theorems
 
 sust :: Sust -> Term -> Term
-sust _ T = T
-sust _ F = F
+sust _ (Constant t) = Constant t
 sust (Sust1 (Var x) term) (Var z) = if (x == z) then term else Var z
 sust (Sust2 (Var x1) (Var x2) t1 t2) (Var z)
         |  x1 == z  = t1
@@ -62,4 +61,3 @@ lambda = ()
 
 
 
-                    

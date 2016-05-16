@@ -1,11 +1,11 @@
 module Vars where
-import Definitions (Term(Var,F,T))
+import Definitions (Term(Var,Constant))
 
 true :: Term
-true = T
+true = Constant "true"
 
 false :: Term
-false = F
+false = Constant "false"
 
 a :: Term
 a = Var 'a'

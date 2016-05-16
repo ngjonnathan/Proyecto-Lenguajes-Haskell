@@ -16,7 +16,7 @@ sust2 = Sust2 p q (r\/p) (q==>a)
 statement :: Term -> IO() 
 statement term = putStrLn $ showTerm term
 
-main = statement (Var 'a')
+main = statement (a/\true) 
 
 --verify= let theorem = (true === ((p <==> p) <==> (q <==> q))) in
 --		proof theorem
