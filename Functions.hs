@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleInstances #-}
 module Functions where
 import Definitions
 import Theorems
@@ -33,12 +34,23 @@ leibniz (Equation e1 e2) termE (Var z) = Equation t1 t2
 infer :: Float -> Sust -> Term -> Term -> Equation
 infer n sus z termE = leibniz (instantiate (prop n) sus) termE z
 
-step :: Term -> Float -> Sust -> Term -> Term -> Term
-step term n sus z termE = stepAux $ infer n sus z termE
+step :: Float -> Sust -> Term -> Term -> Term -> Term
+step n sus z termE term = stepAux $ infer n sus z termE
     where stepAux (Equation e1 e2)
                     | e1 == term = e2
                     | e2 == term = e1
                     | otherwise = error "regla de inferencia invalida"
+
+class Statement tuple where
+    statement :: Float -> () -> tuple -> () -> () -> Term -> Term -> (Term -> Term)
+
+instance Statement (Term,Sust,Term) where
+    statement n _ (t1, Sust1 x1 t2, x2) _ _ z termE = step n sus z termE -- Funcion step parcialmente aplicada
+                                                   where sus = Sust2 x1 x2 t1 t2
+
+instance Statement (Term,Term,Sust,Term,Term) where
+    statement n _ (t1, t2, Sust1 x1 t3, x2, x3) _ _ z termE = step n sus z termE -- Funcion step parcialmente aplicada
+                                                    where sus = Sust3 x1 x2 x3 t1 t2 t3
 
 with :: ()
 with = ()
