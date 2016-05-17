@@ -14,34 +14,48 @@ sust2 :: Sust
 sust2 = Sust2 p q (r\/p) (q==>a)
 
 
-statement :: Term -> IO Term 
-statement term = return term
+--statement2 :: Term -> IO Term 
+--statement2 term = return term
 
-main = statement (a/\true) 
+--main = do statement2 (a/\true) 
+
+proof :: Equation-> IO Term
+proof (Equation t1 _) = return t1
+
+done :: Equation-> Term -> IO()
+done (Equation _ t2) t1 = putStrLn $ if (t2==t1) then "proof successful" else "unsuccessful test" 
+
+verify = let theorem =(true === ((p <==> p) <==> (q <==> q))) in
+		proof theorem
+		>>=
+		statement 3.2 with (p =: p) using lambda z (z)
+		>>=
+		statement 3.1 with (p <==> q,p =: p,r) using lambda z (z)
+		>>=
+		statement 3.3 with (p =: p) using lambda z (z <==> p)
+		>>=
+		statement 3.3 with (p =: p) using lambda z (p <==> z)
+		>>=
+		statement 3.1 with (p <==> q,q =: q,r) using lambda z (z)
+		>>=
+		statement 3.1 with (p,q =: q,r) using lambda z (z <==> q)
+		>>=
+		statement 3.1 with (p <==> p,q =: p,r) using lambda z (z)
+		>>=
+		done theorem
 
 
 --main = do
 --        let prueba = statement 3.1 with (p <==> q,p =: p, r) using lambda z (z)
 --        print $ prueba ((p <==> q) <==> (q <==> p))
 
---verify= let theorem = (true === ((p <==> p) <==> (q <==> q))) in
---		proof theorem
---		>>=
---		statement 3.2
---		>>=
---		statement 3.1
---		>>=
---		statement 3.3
---		>>=
---		statement 3.3
---		>>=
---		statement 3.1
---		>>=
---		statement 3.1
---		>>=
---		statement 3.1
---		>>=
---		done theorem
+
+
+
+
+
+
+
 
 
 

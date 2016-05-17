@@ -29,7 +29,16 @@ neg t1 = Not t1
 
 (=:) :: Term -> Term -> Sust
 (=:) t1 (Var i) = Sust1 (Var i) t1
-(=:) _ _ = error "Error: Debe sustituir una variable por una expresion"
+(=:) _ _ = error "Error: Debe sustituir una variable por una expresion."
+
+with :: ()
+with = ()
+
+using :: ()
+using = ()
+
+lambda :: ()
+lambda = ()
 
 -- Precedence
 

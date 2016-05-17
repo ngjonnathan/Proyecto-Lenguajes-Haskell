@@ -21,7 +21,7 @@ sust su (Imp e1 e2) = Imp (sust su e1) (sust su e2)
 sust su (DoubleImp e1 e2) = DoubleImp (sust su e1) (sust su e2)
 sust su (DoubleNotImp e1 e2) = DoubleNotImp (sust su e1) (sust su e2)
 sust su (Not e1) = Not (sust su e1)
-sust _ _ = error "Debe sustituir una variable por una expresion"
+sust _ _ = error "Debe sustituir una variable por una expresion."
 
 instantiate :: Equation -> Sust -> Equation
 instantiate (Equation t1 t2) su = Equation (sust su t1) (sust su t2)
@@ -34,15 +34,15 @@ leibniz (Equation e1 e2) termE (Var z) = Equation t1 t2
 infer :: Float -> Sust -> Term -> Term -> Equation
 infer n sus z termE = leibniz (instantiate (prop n) sus) termE z
 
-step :: Float -> Sust -> Term -> Term -> Term -> Term
-step n sus z termE term = stepAux $ infer n sus z termE
+step :: Float -> Sust -> Term -> Term -> Term -> IO Term
+step n sus z termE term = return $ stepAux $ infer n sus z termE
     where stepAux (Equation e1 e2)
                     | e1 == term = e2
                     | e2 == term = e1
-                    | otherwise = error "regla de inferencia invalida"
+                    | otherwise = error "Regla de inferencia invalida."
 
 class Statement tuple where
-    statement :: Float -> () -> tuple -> () -> () -> Term -> Term -> (Term -> Term)
+    statement :: Float -> () -> tuple -> () -> () -> Term -> Term -> (Term -> IO Term)
 
 instance Statement (Term,Sust,Term) where
     statement n _ (t1, Sust1 x1 t2, x2) _ _ z termE = step n sus z termE -- Funcion step parcialmente aplicada
@@ -52,14 +52,7 @@ instance Statement (Term,Term,Sust,Term,Term) where
     statement n _ (t1, t2, Sust1 x1 t3, x2, x3) _ _ z termE = step n sus z termE -- Funcion step parcialmente aplicada
                                                     where sus = Sust3 x1 x2 x3 t1 t2 t3
 
-with :: ()
-with = ()
 
-using :: ()
-using = ()
-
-lambda :: ()
-lambda = ()
 
 
 
