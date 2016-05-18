@@ -47,26 +47,26 @@ class Statement tuple where
     statement :: Float -> () -> tuple -> () -> () -> Term -> Term -> Term -> IO Term
 
 instance Statement Sust where
-    statement n _ (Sust1 x1 t1) _ _ z termE =   do
+    statement n _ (Sust1 x1 t1) _ _ z termE termAux=   do
                                                     let sus= Sust1 x1 t1
-                                                    let term = step n sus z termE 
+                                                    let term = step n sus z termE termAux
                                                     putStrLn $ id "===<statement " ++ show n ++ " with " ++ showSust(sus) ++ " using lambda " ++ showTerm(z) ++ " (" ++ showTerm(termE) ++ ")>"
                                                     print term
                                                     return term
 
 
 instance Statement (Term,Sust,Term) where
-    statement n _ (t1, Sust1 x1 t2, x2) _ _ z termE =   do
+    statement n _ (t1, Sust1 x1 t2, x2) _ _ z termE termAux=   do
                                                             let sus= Sust2 x1 x2 t1 t2
-                                                            let term = step n sus z termE 
+                                                            let term = step n sus z termE termAux
                                                             putStrLn $ id "===<statement " ++ show n ++ " with " ++ showSust(sus) ++ " using lambda " ++ showTerm(z) ++ " (" ++ showTerm(termE) ++ ")>"
                                                             print term
                                                             return term   
 
 instance Statement (Term,Term,Sust,Term,Term) where
-    statement n _ (t1, t2, Sust1 x1 t3, x2, x3) _ _ z termE =   do
+    statement n _ (t1, t2, Sust1 x1 t3, x2, x3) _ _ z termE termAux =   do
                                                                     let sus= Sust3 x1 x2 x3 t1 t2 t3
-                                                                    let term = step n sus z termE 
+                                                                    let term = step n sus z termE termAux 
                                                                     putStrLn $ id "===<statement " ++ show n ++ " with " ++ showSust(sus) ++ " using lambda " ++ showTerm(z) ++ " (" ++ showTerm(termE) ++ ")>"
                                                                     print term
                                                                     return term   
