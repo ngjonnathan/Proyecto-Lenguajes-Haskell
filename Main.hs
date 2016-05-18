@@ -4,26 +4,18 @@ import Vars
 import ShowTerm
 import Functions
 
---term :: Equation
---term = (p <==> q) <==> r === p <==> (q <==> r)
 
---sust1 :: Sust
---sust1 = Sust1 p (q<==>p\/r)
+proof :: Equation -> IO Term
+proof (Equation t1 t2) = do 
+					putStrLn $ id "prooving " ++ showTerm(t1) ++ " === " ++ showTerm(t2) ++ "\n"
+					putStrLn $ id showTerm(t1)
+					return(t1)
 
---sust2 :: Sust
---sust2 = Sust2 p q (r\/p) (q==>a)
+done :: Equation -> Term -> IO ()
+done (Equation t1 t2) t 
+	| t == t2 = putStrLn "\nproof successful"
+	| otherwise = error "proof unsuccessful"
 
-
---statement2 :: Term -> IO Term 
---statement2 term = return term
-
---main = do statement2 (a/\true) 
-
-proof :: Equation-> IO Term
-proof (Equation t1 _) = return t1
-
-done :: Equation-> Term -> IO()
-done (Equation _ t2) t1 = putStrLn $ if (t2==t1) then "proof successful" else "unsuccessful test" 
 
 verify = let theorem =(true === ((p <==> p) <==> (q <==> q))) in 
 		proof theorem
@@ -44,8 +36,6 @@ verify = let theorem =(true === ((p <==> p) <==> (q <==> q))) in
 		>>=
 		done theorem
 
-
-main = verify
 
 
 
