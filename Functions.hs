@@ -22,7 +22,7 @@ sust su (Imp e1 e2) = Imp (sust su e1) (sust su e2)
 sust su (DoubleImp e1 e2) = DoubleImp (sust su e1) (sust su e2)
 sust su (DoubleNotImp e1 e2) = DoubleNotImp (sust su e1) (sust su e2)
 sust su (Not e1) = Not (sust su e1)
-sust _ _ = error "Debe sustituir una variable por una expresion."
+sust _ _ = error "substitute variable for expression."
 
 instantiate :: Equation -> Sust -> Equation
 instantiate (Equation t1 t2) su = Equation (sust su t1) (sust su t2)
@@ -40,7 +40,7 @@ step n sus z termE term = stepAux $ infer n sus z termE
     where stepAux (Equation e1 e2)
                     | e1 == term = e2
                     | e2 == term = e1
-                    | otherwise = error "Regla de inferencia invalida."
+                    | otherwise = error "invalid inference rule."
 
 
 class Statement tuple where

@@ -1,6 +1,6 @@
------------------------------------------
--- Coloque los imports necesarios aqui --
------------------------------------------
+import Term
+import ShowTerm
+import Functions
 
 verify = let theorem = ( p \/ (q \/ r) === (p \/ q) \/ (p \/ r) ) in
          proof theorem

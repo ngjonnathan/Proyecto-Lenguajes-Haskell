@@ -41,9 +41,9 @@ showEq (Equation t1 t2) = showTerm t1 ++ " === " ++ showTerm t2
 instance Show Equation where show = showEq
 
 showSust :: Sust -> String
-showSust (Sust1 (Var i) t) = "(" ++ show i ++ ":=" ++ showTerm t ++ ")"
-showSust (Sust2 (Var i) (Var j) t1 t2) = "(" ++ show i ++ ", " ++ show j ++ ":=" ++ showTerm t1 ++ ", " ++ showTerm t2 ++ ")"
-showSust (Sust3 (Var i) (Var j) (Var k) t1 t2 t3) = "(" ++ show i ++ ", " ++ show j ++ ", "++ show k ++ ":=" ++ showTerm t1 ++ ", " ++ showTerm t2 ++ ", " ++ showTerm t3 ++ ")"
+showSust (Sust1 (Var i) t) = "(" ++ showTerm t ++ "=:" ++  show i ++ ")"
+showSust (Sust2 (Var i) (Var j) t1 t2) = "(" ++ showTerm t1  ++ ", " ++ showTerm t2 ++ "=:" ++ show i  ++ ", " ++  show j  ++ ")"
+showSust (Sust3 (Var i) (Var j) (Var k) t1 t2 t3) = "(" ++ showTerm t1 ++ ", " ++ showTerm t2 ++ ", "++ showTerm t3 ++ "=:" ++ show i ++ ", " ++ show j ++ ", " ++ show k ++ ")"
 
 instance Show Sust where show = showSust
 

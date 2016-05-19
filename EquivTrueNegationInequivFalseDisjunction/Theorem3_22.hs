@@ -1,6 +1,6 @@
------------------------------------------
--- Coloque los imports necesarios aqui --
------------------------------------------
+import Term
+import ShowTerm
+import Functions
 
 verify = let theorem = ( neg p === p <==> false ) in
          proof theorem
