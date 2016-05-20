@@ -5,7 +5,8 @@ import Theorems
 import ShowTerm
 
 sust :: Sust -> Term -> Term
-sust _ (Constant t) = Constant t
+sust _ T = T
+sust _ F = F
 sust (Sust1 (Var x) term) (Var z) = if (x == z) then term else Var z
 sust (Sust2 (Var x1) (Var x2) t1 t2) (Var z)
         |  x1 == z  = t1

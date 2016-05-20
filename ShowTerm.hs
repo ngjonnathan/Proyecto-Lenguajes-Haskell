@@ -3,7 +3,8 @@ import Term
 
 showTerm :: Term -> String
 showTerm (Var i) = show i
-showTerm (Constant t) = t
+showTerm T = "true"
+showTerm F = "false"
 
 showTerm (Or (Var i) (Var j)) = showTerm(Var i) ++ "\\/" ++ showTerm(Var j)
 showTerm (Or (Var i) t) = showTerm(Var i) ++ " \\/ (" ++ showTerm(t) ++ ")"

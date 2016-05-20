@@ -1,6 +1,6 @@
 module Term where
 
-data Term = Constant String | Var Char | Or Term Term | And Term Term | Imp Term Term | DoubleImp Term Term | DoubleNotImp Term Term | Not Term deriving (Eq)
+data Term = T | F | Var Char | Or Term Term | And Term Term | Imp Term Term | DoubleImp Term Term | DoubleNotImp Term Term | Not Term deriving (Eq)
 
 data Equation = Equation Term Term deriving (Eq)
 
@@ -51,10 +51,10 @@ lambda :: ()
 lambda = ()
 
 true :: Term
-true = Constant "true"
+true = T
 
 false :: Term
-false = Constant "false"
+false = F
 
 a :: Term
 a = Var 'a'
