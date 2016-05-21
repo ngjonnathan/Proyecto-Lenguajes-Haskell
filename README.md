@@ -1,5 +1,5 @@
-# Proyecto-Lenguajes
-Proyecto de Laboratorio de Lenguajes de Programacion I Abril-Julio 2016
+# Asistente de Pruebas para la Logica Proposicional
+Proyecto 1 Laboratorio de Lenguajes de Programacion I Abril-Julio 2016
 
 Jonnathan Ng **11-10199**
 
